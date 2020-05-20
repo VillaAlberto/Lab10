@@ -2,6 +2,8 @@ package it.polito.tdp.bar;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+
+import it.polito.tdp.bar.model.Model;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,16 +12,20 @@ import javafx.stage.Stage;
 
 public class EntryPoint extends Application {
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
-        
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-        
-        stage.setTitle("JavaFX and Maven");
-        stage.setScene(scene);
-        stage.show();
+	 @Override
+	    public void start(Stage stage) throws Exception {
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scene.fxml"));
+	    	Parent root = loader.load();
+	        Scene scene = new Scene(root);
+	         
+	        Model model = new Model();
+	        FXMLController controller = loader.getController();
+	        controller.setModel(model);
+	        
+	        stage.setTitle("Lab09");
+	        stage.setScene(scene);
+	        stage.show();
+	
     }
 
     /**
